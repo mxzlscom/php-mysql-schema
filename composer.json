@@ -1,0 +1,26 @@
+{
+  "name": "mengx/mysql-schema",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Mengx\\MysqlSchema\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "萌新在路上",
+      "email": "mxzls@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*",
+    "ext-ctype": "*",
+    "ext-mbstring": "*"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.0-dev"
+    }
+  }
+}
