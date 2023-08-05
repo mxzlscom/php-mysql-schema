@@ -7,6 +7,7 @@ namespace Mengx\MysqlSchema;
 use Mengx\MysqlSchema\Columns\ColumnTrait;
 use Mengx\MysqlSchema\Columns\FloatColumn;
 use Mengx\MysqlSchema\Columns\IntegerColumn;
+use Mengx\MysqlSchema\Columns\JsonColumn;
 use Mengx\MysqlSchema\Columns\TextColumn;
 use Mengx\MysqlSchema\Columns\TimestampColumn;
 use Mengx\MysqlSchema\Columns\VarcharColumn;
@@ -165,6 +166,10 @@ class Table
         return $this->columns[$name];
     }
 
+    public function json(string $name):JsonColumn{
+        $this->columns[$name] = (new JsonColumn($name))->setTable($this)->setColumnName('json');
+        return $this->columns[$name];
+    }
 
     public function timestamp(string $name,$defaultCurrent = false):TimestampColumn{
         $this->columns[$name] = (new TimestampColumn($name,$defaultCurrent))->setTable($this);

@@ -9,8 +9,6 @@ class VarcharColumn
 
     use ColumnTrait;
 
-    private string $name;
-
     private int $length;
 
     private ?string $default;

@@ -8,8 +8,6 @@ class TimestampColumn
 {
     use ColumnTrait;
 
-
-    private string $name;
     private bool $defaultCurrent;
 
     public function __construct(string $name,$defaultCurrent = false)

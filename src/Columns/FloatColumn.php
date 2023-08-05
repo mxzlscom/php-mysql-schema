@@ -9,8 +9,6 @@ class FloatColumn
     use ColumnTrait;
     use NumberColumnTrait;
 
-    protected string $name;
-
     protected int $total;
     protected int $places;
     private ?float $default;

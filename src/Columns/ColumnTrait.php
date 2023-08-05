@@ -18,6 +18,8 @@ trait ColumnTrait
     protected string $columnName;
 
 
+    protected string $name;
+
     public function setColumnName(string $columnName):self{
         $this->columnName = $columnName;
         return $this;

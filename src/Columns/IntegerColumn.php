@@ -8,8 +8,6 @@ class IntegerColumn
 {
     use ColumnTrait;
 
-    private string $name;
-
     private ?int $default;
 
     private bool $autoIncrement = false;
