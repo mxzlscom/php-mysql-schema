@@ -35,6 +35,10 @@ trait ColumnTrait
         return $this;
     }
 
+    public function nullable(bool $nullable = true):self{
+        $this->nullable = $nullable;
+        return $this;
+    }
 
     abstract public function toCreateSql():string;
 
@@ -74,4 +78,6 @@ trait ColumnTrait
             return ' NOT NULL';
         }
     }
+
+
 }
