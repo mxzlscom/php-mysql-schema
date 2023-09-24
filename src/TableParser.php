@@ -123,26 +123,34 @@ class TableParser
 //        var_dump($result);
 
 
+        /**
+         * 是否具有默认值
+         */
         // 是否有默认值 所有列都具有属性
-        $hasDefault = array_search('DEFAULT',$keywords);
+        $defaultIndex = array_search('DEFAULT',$keywords);
         $default = null;
-        if($hasDefault !== false){
-            $default = $keywords[$hasDefault + 1];
-
+        if($defaultIndex !== false){
+            $hasDefault = true;
+            $default = $keywords[$defaultIndex + 1];
             if($default === 'NULL'){
                 $default = null;
             }
+        }else{
+            $hasDefault = false;
         }
+
+        /**
+         * 是否有备注
+         */
         // 是否有备注 所有列都具有属性
         $hasComment = array_search('COMMENT',$keywords);
-
-
-
         $comment = '';
         if($hasComment !== false){
-            $comment = trim($keywords[$hasComment + 1],"'");
             // 去除收尾符号
+            $comment = trim($keywords[$hasComment + 1],"'");
         }
+
+
 //    0.nb
         // 先按类来处理
         // 处理int 类
@@ -184,7 +192,10 @@ class TableParser
             $column = $table->float($columnName,intval($total),intval($places),$default)->setColumnName($typeContent);
         }elseif($typeContent === 'timestamp'){
             $defaultCurrent = $default === 'CURRENT_TIMESTAMP';
-            $column = $table->timestamp($columnName,$defaultCurrent)->nullable(is_null($default));
+            $column = $table->timestamp($columnName,$defaultCurrent);
+            if($hasDefault && is_null($default)){
+                $column->nullable();
+            }
         }elseif($typeContent === 'json'){
             $column = $table->json($columnName)->setColumnName($typeContent);
         }
