@@ -184,7 +184,7 @@ class TableParser
             $column = $table->float($columnName,intval($total),intval($places),$default)->setColumnName($typeContent);
         }elseif($typeContent === 'timestamp'){
             $defaultCurrent = $default === 'CURRENT_TIMESTAMP';
-            $column = $table->timestamp($columnName,$defaultCurrent);
+            $column = $table->timestamp($columnName,$defaultCurrent)->nullable($default);
         }elseif($typeContent === 'json'){
             $column = $table->json($columnName)->setColumnName($typeContent);
         }
