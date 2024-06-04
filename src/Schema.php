@@ -137,7 +137,7 @@ class Schema
     }
 
     private static function getTableCreateSql(string $name){
-        $sql = "SHOW CREATE TABLE {$name}";
+        $sql = "SHOW CREATE TABLE `{$name}`";
         $result = self::$pdo->query($sql)->fetch(\PDO::FETCH_ASSOC);
         return $result['Create Table'];
     }
