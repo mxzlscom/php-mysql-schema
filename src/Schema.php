@@ -25,13 +25,13 @@ class Schema
         $dsn="mysql:host={$host}";
         self::$pdo = new \PDO($dsn,$username,$password);
         self::createDatabase($database,$charset,$collate);
-        $useDbSql = sprintf('use %s',$database);
+        $useDbSql = sprintf('use `%s`',$database);
         self::$pdo->exec($useDbSql);
     }
 
 
     private static function createDatabase($database,$charset='utf8mb4',$collate='utf8mb4_unicode_ci'){
-        $sql = sprintf('CREATE DATABASE IF NOT EXISTS %s DEFAULT CHARACTER SET %s DEFAULT COLLATE %s',$database,$charset,$collate);
+        $sql = sprintf('CREATE DATABASE IF NOT EXISTS `%s` DEFAULT CHARACTER SET %s DEFAULT COLLATE %s',$database,$charset,$collate);
         if(self::$pdo->exec($sql) === false){
             throw new \Exception('数据库创建失败');
         }
